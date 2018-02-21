@@ -5,12 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,:omniauthable, :omniauth_providers => [:facebook,:linkedin]
 
  def self.from_omniauth(auth)
+  debugger
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name  
        user.oauth_token = auth.credentials.token
-       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+       user.secret = auth.credentials.token
+
+       
        # assuming the user model has a name
       # assuming the user model has an image
       # If you are using confirmable and the provider(s) you use validate emails, 
@@ -32,8 +35,13 @@ class User < ApplicationRecord
       rescue Koala::Facebook::APIError => e
       logger.info e.to_s
        nil
-
   end
+
+   def linkedin
+     client = LinkedIn::Client.new('81yeyf9g9o78xk', 'ModpUQq1yCfVE9jw')
+     client.authorize_from_access("13900")
+     client
+   end
 
 end
 
