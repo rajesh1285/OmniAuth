@@ -6,9 +6,9 @@ git_source(:github) do |repo_name|
 end
 
 
-
+gem "koala"
 gem 'omniauth'
-gem 'omniauth-twitter'
+gem 'omniauth-linkedin'
 gem 'omniauth-facebook'
 gem 'normalize-rails'
 gem 'jquery-rails'
