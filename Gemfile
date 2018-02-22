@@ -8,6 +8,7 @@ end
 
 gem "koala"
 gem 'omniauth'
+gem 'omniauth-twitter'
 gem 'omniauth-linkedin'
 gem 'omniauth-facebook'
 gem 'normalize-rails'
@@ -60,3 +61,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'linkedin', '~> 1.1'
